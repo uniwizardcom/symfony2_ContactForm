@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Messages" table="messages">
+    <id name="messagesId" type="integer" column="messages_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="ip" type="text" column="ip" length="65535" nullable="false"/>
+    <field name="email" type="text" column="email" length="65535" nullable="false"/>
+    <field name="subject" type="text" column="subject" length="65535" nullable="false"/>
+    <field name="message" type="text" column="message" length="65535" nullable="false"/>
+  </entity>
+</doctrine-mapping>

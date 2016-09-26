@@ -1,0 +1,53 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Messages
+ *
+ * @ORM\Table(name="messages")
+ * @ORM\Entity
+ */
+class Messages
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="messages_id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $messagesId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ip", type="text", length=65535, nullable=false)
+     */
+    private $ip;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="text", length=65535, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="subject", type="text", length=65535, nullable=false)
+     */
+    private $subject;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", length=65535, nullable=false)
+     */
+    private $message;
+
+
+}

@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\Type\ContactType;
+use AppBundle\Entity\Messages;
 
 class DefaultController extends Controller {
 	/**
@@ -27,6 +28,16 @@ class DefaultController extends Controller {
 			$form->bind($request);
 	
 			if($form->isValid()) {
+				$messages = new Messages();
+				$messages->setEmail($form->get('email')->getData());
+				$messages->setIp($request->getClientIp());
+				$messages->setSubject($form->get('subject')->getData());
+				$messages->setMessage($form->get('message')->getData());
+				
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($messages);
+				$em->flush();
+				
 				$message = \Swift_Message::newInstance()
 				->setSubject($form->get('subject')->getData())
 				->setFrom($form->get('email')->getData())
