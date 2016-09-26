@@ -41,7 +41,8 @@ class DefaultController extends Controller {
 				$message = \Swift_Message::newInstance()
 				->setSubject($form->get('subject')->getData())
 				->setFrom($form->get('email')->getData())
-				->setTo('Piotr.Gradzinski@vml.com')
+				//->setTo('Piotr.Gradzinski@vml.com')
+				->setTo('niewiadomski.wojciech@gmail.com')
 				->setBody(
 						$this->renderView(
 								'AppBundle:Mail:contact.html.twig', [
@@ -54,8 +55,10 @@ class DefaultController extends Controller {
 	
 				$this->get('mailer')->send($message);
 				$request->getSession()->getFlashBag()->add('success', 'Your email has been sent! Thanks!');
-	
-				return $this->redirect($this->generateUrl('contact'));
+				
+				
+				return $this->redirect($this->generateUrl('thankyou'));
+				//return $this->redirect($this->generateUrl('contact'));
 			}
 		}
 		
@@ -63,5 +66,12 @@ class DefaultController extends Controller {
 				"AppBundle:Default:form.html.twig",
 				['form' => $form->createView()]
 			);
+	}
+	
+	/**
+	 * @Route("/thankyou", _name="thankyou")
+	 */
+	public function thankyouAction(Request $request) {
+		return $this->render("AppBundle:Default:thankyou.html.twig");
 	}
 }
